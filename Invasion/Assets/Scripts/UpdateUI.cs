@@ -18,7 +18,6 @@ public class UpdateUI : MonoBehaviour
     {
         if(value == "Resources")
         {
-            print("HER");
             resources = FindAnyObjectByType<GameBrain>().getResources();
             gameObject.GetComponent<TMP_Text>().SetText(resources.ToString());
         }else if(value == "Health")
