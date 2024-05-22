@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class MoveTowardsOrigin : MonoBehaviour
+public class AlienMovement : MonoBehaviour
 {
-    public float moveSpeed = 1f; // Speed at which the sprite moves towards the origin
+    public float moveSpeed = 0.5f; // Speed at which the sprite moves towards the origin
 
     void Update()
     {
