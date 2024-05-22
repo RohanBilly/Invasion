@@ -27,4 +27,14 @@ public class GameBrain : MonoBehaviour
     {
         return playerResources;
     }
+    public int getHealth()
+    {
+        return playerHealth;
+    }
+
+
+    public void Damage()
+    {
+        print("OUCH");
+    }
 }
