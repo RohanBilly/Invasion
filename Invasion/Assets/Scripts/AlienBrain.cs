@@ -27,6 +27,10 @@ public class AlienBrain : MonoBehaviour
             Earth.GetComponent<DamageBlip>().TakeDamage();
             Earth.GetComponent<GameBrain>().playerHealth -= 1;
             Destroy(gameObject);
+        } else if (collision.GetComponent<MoveAwayFromOrigin>() != null)
+        {
+            Destroy(gameObject);
+            Earth.GetComponent<GameBrain>().CollectResources(10);
         }
     }
 }

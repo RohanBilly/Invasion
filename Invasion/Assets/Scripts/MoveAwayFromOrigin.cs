@@ -4,7 +4,7 @@ public class MoveAwayFromOrigin : MonoBehaviour
 {
     public GameObject origin;
     private Vector2 direction;
-    public float speed = 5f;
+    public float speed = 40f;
 
     private void Awake()
     {

@@ -37,6 +37,9 @@ public class GameBrain : MonoBehaviour
     {
         print("OUCH");
     }
-
+    public void CollectResources(int ammount)
+    {
+        playerResources += ammount;
+    }
 
 }
