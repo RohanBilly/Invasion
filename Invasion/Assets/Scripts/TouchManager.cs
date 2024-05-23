@@ -29,7 +29,7 @@ public class TouchManager : MonoBehaviour
     private void TouchPressed(InputAction.CallbackContext context)
     {
         Vector2 position = touchPositionAction.ReadValue<Vector2>();
-        Debug.Log(position);
+       
         Camera.main.ScreenToWorldPoint(touchPositionAction.ReadValue<Vector2>());
         Debug.Log(position);
         

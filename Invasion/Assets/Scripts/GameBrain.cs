@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using Unity.Android.Types;
+//using Unity.Android.Types;
 using UnityEngine;
 
 public class GameBrain : MonoBehaviour
