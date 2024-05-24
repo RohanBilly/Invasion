@@ -8,6 +8,8 @@ public class Rotate : MonoBehaviour
     public bool leftPressed;
     public bool rightPressed;
 
+    public float decellerationSpeed = 0.1f;
+
     private void Awake()
     {
         leftPressed = false;
@@ -17,19 +19,37 @@ public class Rotate : MonoBehaviour
     void Update()
     {
         // Check for arrow key inputs
-        if (Input.GetKey(KeyCode.LeftArrow) || leftPressed == true)
+        /*if (Input.GetKey(KeyCode.LeftArrow) || leftPressed == true)
         {
             RotateAroundPoint(rotationSpeed * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.RightArrow) || rightPressed == true)
         {
             RotateAroundPoint(-rotationSpeed * Time.deltaTime);
+        }*/
+        RotateAroundPoint(rotationSpeed * Time.deltaTime);
+        if (rotationSpeed> 0.11f)
+        {
+            rotationSpeed = rotationSpeed - decellerationSpeed;
+        }else if (rotationSpeed < -0.11f)
+        {
+            rotationSpeed = rotationSpeed + decellerationSpeed;
         }
+        else
+        {
+            rotationSpeed = 0;
+        }
+        
     }
 
     void RotateAroundPoint(float angle)
     {
         // Rotate the camera around the specified point along the Z-axis
         transform.RotateAround(rotationPoint, Vector3.forward, angle);
+    }
+
+    public void RotationMomentum(float force)
+    {
+        rotationSpeed += force;
     }
 }

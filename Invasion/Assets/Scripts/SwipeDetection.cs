@@ -12,6 +12,7 @@ public class SwipeDetection : MonoBehaviour
     [SerializeField, Range(0f,1f)]
     private float directionThreshold = .9f;
 
+    private Camera mainCamera;
     private InputManager inputManager;
 
     private Vector2 startPosition;
@@ -20,9 +21,13 @@ public class SwipeDetection : MonoBehaviour
     private Vector2 endPosition;
     private float endTime;
 
+    public float swipeDistance;
+    public float swipeTime;
+
     private void Awake()
     {
         inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
+        mainCamera = Camera.main;
     }
 
     private void OnEnable()
@@ -53,8 +58,6 @@ public class SwipeDetection : MonoBehaviour
 
     private void DetectSwipe()
     {
-        
-        
         if (Vector3.Distance(startPosition, endPosition) >= minimumDistance &&
                 (endTime-startTime) <= maximumTime){
             print("Swipe Detected");
@@ -63,7 +66,11 @@ public class SwipeDetection : MonoBehaviour
             Vector3 direction = endPosition - startPosition;
             Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
 
+            swipeDistance = Vector3.Distance(startPosition, endPosition);
+            
 
+            swipeTime = startTime - endTime;
+            Debug.Log(swipeDistance+ "   "+swipeTime);
             SwipeDirection(direction2D);
         }
     }
@@ -80,11 +87,13 @@ public class SwipeDetection : MonoBehaviour
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
+            mainCamera.GetComponent<Rotate>().RotationMomentum(swipeDistance*(1-swipeTime) * 0.5f);
             Debug.Log("Swipe left");            
         }
         else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
         {
             Debug.Log("Swipe UP right");
+            mainCamera.GetComponent<Rotate>().RotationMomentum(swipeDistance * (1 - swipeTime) * 0.5f * -1);
         }
     }
 
