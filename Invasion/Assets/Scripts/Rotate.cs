@@ -9,6 +9,8 @@ public class Rotate : MonoBehaviour
     public bool rightPressed;
 
     public float decellerationSpeed = 0.1f;
+    public float maxSpeed = 30f;
+    public float forceMulitplier = 30f;
 
     private void Awake()
     {
@@ -30,10 +32,10 @@ public class Rotate : MonoBehaviour
         RotateAroundPoint(rotationSpeed * Time.deltaTime);
         if (rotationSpeed> 0.11f)
         {
-            rotationSpeed = rotationSpeed - decellerationSpeed;
+            rotationSpeed = rotationSpeed - (decellerationSpeed * Time.deltaTime);
         }else if (rotationSpeed < -0.11f)
         {
-            rotationSpeed = rotationSpeed + decellerationSpeed;
+            rotationSpeed = rotationSpeed + (decellerationSpeed * Time.deltaTime);
         }
         else
         {
@@ -50,6 +52,37 @@ public class Rotate : MonoBehaviour
 
     public void RotationMomentum(float force)
     {
-        rotationSpeed += force;
+        force = force* Time.deltaTime * forceMulitplier;
+        if (force < 0)
+        {
+            if (rotationSpeed > 0)
+            {
+                rotationSpeed = 0 + rotationSpeed / 2;
+            }
+            if (rotationSpeed + force > -maxSpeed)
+            {
+                rotationSpeed += force;
+            }
+            else
+            {
+                rotationSpeed = -maxSpeed;
+            }
+        }
+        else
+        {
+            if (rotationSpeed < 0)
+            {
+                rotationSpeed = 0 + rotationSpeed / 2;
+            }
+            if (rotationSpeed + force < maxSpeed)
+            {
+                rotationSpeed += force;
+            }
+            else
+            {
+                rotationSpeed = maxSpeed;
+            }
+        }
+        print(rotationSpeed);
     }
 }

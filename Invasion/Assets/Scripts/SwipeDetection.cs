@@ -87,13 +87,13 @@ public class SwipeDetection : MonoBehaviour
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
-            mainCamera.GetComponent<Rotate>().RotationMomentum(swipeDistance*(1-swipeTime) * 0.5f);
+            mainCamera.GetComponent<Rotate>().RotationMomentum(swipeDistance*(1-swipeTime) );
             Debug.Log("Swipe left");            
         }
         else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
         {
             Debug.Log("Swipe UP right");
-            mainCamera.GetComponent<Rotate>().RotationMomentum(swipeDistance * (1 - swipeTime) * 0.5f * -1);
+            mainCamera.GetComponent<Rotate>().RotationMomentum(swipeDistance * (1 - swipeTime) * -1);
         }
     }
 
