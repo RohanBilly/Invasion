@@ -42,7 +42,7 @@ public partial class @TouchControls: IInputActionCollection2, IDisposable
                     ""id"": ""eb4d73ec-35eb-481f-9ce0-381d092df660"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
