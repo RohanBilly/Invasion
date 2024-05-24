@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,11 +30,38 @@ public class TouchManager : MonoBehaviour
     private void TouchPressed(InputAction.CallbackContext context)
     {
         Vector2 position = touchPositionAction.ReadValue<Vector2>();
-       
+
         Camera.main.ScreenToWorldPoint(touchPositionAction.ReadValue<Vector2>());
-        Debug.Log(position);
-        
+        //Debug.Log(position);
+        string[] intersectingObjectNames = GetAllIntersectingObjectNames(position);
+
+        if (intersectingObjectNames.Length > 0)
+        {
+            Debug.Log("GameObjects intersecting the point: " + position);
+            foreach (string name in intersectingObjectNames)
+            {
+                Debug.Log("Intersecting GameObject: " + name);
+            }
+        }
+        else
+        {
+            //Debug.Log("No GameObject is intersecting the point: " + position);
+        }
+
     }
 
+
+    public string[] GetAllIntersectingObjectNames(Vector2 point)
+    {
+        Collider2D[] colliders = Physics2D.OverlapPointAll(point);
+        string[] intersectingObjectNames = new string[colliders.Length];
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            intersectingObjectNames[i] = colliders[i].gameObject.name;
+        }
+
+        return intersectingObjectNames;
+    }
 
 }
