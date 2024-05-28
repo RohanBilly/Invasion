@@ -14,6 +14,6 @@ public class UpdateResources : MonoBehaviour
 
     private void Update()
     {
-        tmpText.text = player.GetComponent<PlayerStats>().resources.ToString();
+        tmpText.text = player.GetComponent<Player>().resources.ToString();
     }
 }
