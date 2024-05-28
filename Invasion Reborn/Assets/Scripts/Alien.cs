@@ -27,8 +27,10 @@ public class Alien : MonoBehaviour
         }
         else if (collision.GetComponent<MoveProjectile>() != null)
         {
-            Destroy(gameObject);
+            Destroy(collision.gameObject);
             player.GetComponent<PlayerStats>().resources += 10;
+            Destroy(gameObject);
+            
         }
     }
 }
