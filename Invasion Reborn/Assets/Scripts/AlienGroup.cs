@@ -15,9 +15,10 @@ public class AlienGroup : MonoBehaviour
     public float moveSpeed = 0.5f; // Speed at which the sprite moves towards the origin
     
     private GameObject player;
-
+    public int aliensRemaining;
     void Start()
     {
+        aliensRemaining = numberOfRows * numberOfColumns;
         CreateAlienGrid();
         player = GameObject.Find("Player");
     }
@@ -30,6 +31,12 @@ public class AlienGroup : MonoBehaviour
 
         // Calculate the new position using Lerp for smooth movement
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        
+        if (aliensRemaining <= 0)
+        {
+            
+            Destroy(gameObject);
+        }
     }
 
     void CreateAlienGrid()
