@@ -22,22 +22,26 @@ public class Rotate : MonoBehaviour
 
     public bool slowMovement;
 
+    private Player player;
+
     private void Start()
     {
         slowMovement = false;
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
     void Update()
     {
         Dceleration();
         // Check for arrow key inputs
         
-        if (!slowMovement)
+        if (slowMovement || player.buildMode)
         {
-            StandardMovement();
+            SlowMovement();
+            
         }
         else
         {
-            SlowMovement();
+            StandardMovement();
         }
         
 

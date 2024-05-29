@@ -4,8 +4,12 @@ using UnityEngine.EventSystems;
 public class TowerIcon : MonoBehaviour, IPointerClickHandler
 {
     private GameObject player;
+
+    public int towerType;
     private SpriteRenderer buildZoneImage;
+
     public Sprite towerImage;
+
 
     private void Awake()
     {
@@ -15,7 +19,8 @@ public class TowerIcon : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        buildZoneImage.sprite = towerImage;
-        Debug.Log("Image clicked!");
+        player.GetComponent<Player>().EnterBuildMode(towerImage);
+
+
     }
 }
