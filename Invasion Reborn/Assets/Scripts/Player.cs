@@ -61,6 +61,55 @@ public class Player : MonoBehaviour
         }
 
     }
+    private void OnBuild2(InputValue inputValue)
+    {
+        if (towerSelected == 2)
+        {
+            buildMode = false;
+            towerPlacement.sprite = null;
+            towerSelected = 0;
+        }
+        else
+        {
+            towerSelected = 2;
+            towerPlacement.sprite = tower2Image;
+            buildMode = true;
+        }
+
+    }
+
+    private void OnBuild3(InputValue inputValue)
+    {
+        if (towerSelected == 3)
+        {
+            buildMode = false;
+            towerPlacement.sprite = null;
+            towerSelected = 0;
+        }
+        else
+        {
+            towerSelected = 3;
+            towerPlacement.sprite = tower3Image;
+            buildMode = true;
+        }
+    }
+    private void OnBuild4(InputValue inputValue)
+    {
+        if (towerSelected == 4)
+        {
+            buildMode = false;
+            towerPlacement.sprite = null;
+            towerSelected = 0;
+        }
+        else
+        {
+            towerSelected = 4;
+            towerPlacement.sprite = tower4Image;
+            buildMode = true;
+        }
+
+    }
+
 
     private void OnBuild()
     {
@@ -69,6 +118,17 @@ public class Player : MonoBehaviour
             if (towerSelected == 1)
             {
                 GameObject Tower1 = Instantiate(tower1, towerPlacement.gameObject.transform.position, towerPlacement.gameObject.transform.rotation);
+            }else if(towerSelected == 2)
+            {
+                GameObject Tower2 = Instantiate(tower2, towerPlacement.gameObject.transform.position, towerPlacement.gameObject.transform.rotation);
+            }
+            else if (towerSelected == 3)
+            {
+                GameObject Tower3 = Instantiate(tower3, towerPlacement.gameObject.transform.position, towerPlacement.gameObject.transform.rotation);
+            }
+            else if (towerSelected == 4)
+            {
+                GameObject Tower4 = Instantiate(tower4, towerPlacement.gameObject.transform.position, towerPlacement.gameObject.transform.rotation);
             }
             buildMode = false;
             towerPlacement.sprite = null;
