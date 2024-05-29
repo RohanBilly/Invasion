@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Build"",
+                    ""type"": ""Button"",
+                    ""id"": ""a97a5fdc-c6c9-4df5-946e-5f93cd74d59d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -205,6 +214,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Build2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5e3b143-b21c-41d8-9d2f-1563f89e3807"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Build"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -218,6 +238,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_Slow = m_Gameplay.FindAction("Slow", throwIfNotFound: true);
         m_Gameplay_Build1 = m_Gameplay.FindAction("Build1", throwIfNotFound: true);
         m_Gameplay_Build2 = m_Gameplay.FindAction("Build2", throwIfNotFound: true);
+        m_Gameplay_Build = m_Gameplay.FindAction("Build", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,6 +305,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Slow;
     private readonly InputAction m_Gameplay_Build1;
     private readonly InputAction m_Gameplay_Build2;
+    private readonly InputAction m_Gameplay_Build;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -293,6 +315,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Slow => m_Wrapper.m_Gameplay_Slow;
         public InputAction @Build1 => m_Wrapper.m_Gameplay_Build1;
         public InputAction @Build2 => m_Wrapper.m_Gameplay_Build2;
+        public InputAction @Build => m_Wrapper.m_Gameplay_Build;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -317,6 +340,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Build2.started += instance.OnBuild2;
             @Build2.performed += instance.OnBuild2;
             @Build2.canceled += instance.OnBuild2;
+            @Build.started += instance.OnBuild;
+            @Build.performed += instance.OnBuild;
+            @Build.canceled += instance.OnBuild;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -336,6 +362,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Build2.started -= instance.OnBuild2;
             @Build2.performed -= instance.OnBuild2;
             @Build2.canceled -= instance.OnBuild2;
+            @Build.started -= instance.OnBuild;
+            @Build.performed -= instance.OnBuild;
+            @Build.canceled -= instance.OnBuild;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -360,5 +389,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSlow(InputAction.CallbackContext context);
         void OnBuild1(InputAction.CallbackContext context);
         void OnBuild2(InputAction.CallbackContext context);
+        void OnBuild(InputAction.CallbackContext context);
     }
 }

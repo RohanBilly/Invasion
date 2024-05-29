@@ -761,6 +761,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources: 0
   buildMode: 0
+  tower1Image: {fileID: 21300000, guid: 9c0b67b52dd34bd4d8837794b4167ddc, type: 3}
+  tower2Image: {fileID: 21300000, guid: d3691de379f494643848ff899571971b, type: 3}
+  tower3Image: {fileID: 21300000, guid: 1fcac6bbe6bf7394abff16225b7e9b36, type: 3}
+  tower4Image: {fileID: 21300000, guid: 2b80917316c458744a6e247617ad24f7, type: 3}
+  tower1: {fileID: 3540736643222077093, guid: 3df0d4fc7376f934f8ec1eade1f9f833, type: 3}
+  tower2: {fileID: 3540736643222077093, guid: 3df0d4fc7376f934f8ec1eade1f9f833, type: 3}
+  tower3: {fileID: 3540736643222077093, guid: 3df0d4fc7376f934f8ec1eade1f9f833, type: 3}
+  tower4: {fileID: 3540736643222077093, guid: 3df0d4fc7376f934f8ec1eade1f9f833, type: 3}
 --- !u!1 &1023566795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,7 +1526,6 @@ GameObject:
   - component: {fileID: 1583873090}
   - component: {fileID: 1583873093}
   - component: {fileID: 1583873092}
-  - component: {fileID: 1583873091}
   m_Layer: 5
   m_Name: Tower
   m_TagString: Untagged
@@ -1545,19 +1552,6 @@ RectTransform:
   m_AnchoredPosition: {x: -15.4, y: 100.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1583873091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583873089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f254432cef4034d47aef5fac29db381c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerImage: {fileID: 21300000, guid: 9c0b67b52dd34bd4d8837794b4167ddc, type: 3}
 --- !u!114 &1583873092
 MonoBehaviour:
   m_ObjectHideFlags: 0
