@@ -39,6 +39,9 @@ public class Alien : MonoBehaviour
             player.GetComponent<Player>().resources += 10;
             Destroy(gameObject);
             alienGroup.aliensRemaining -= 1;
+        }else if (collision.GetComponent<AssultProjectile>() != null)
+        {
+            print("ouch");
         }
     }
 }

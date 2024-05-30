@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3423228896954921813}
   m_Layer: 0
   m_Name: Alien
-  m_TagString: Untagged
+  m_TagString: Alien
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606b0158415549c40b0b7945afaff7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alienGroup: {fileID: 0}
   moveSpeed: 0.5
 --- !u!70 &4908318844075463619
 CapsuleCollider2D:
