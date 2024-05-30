@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public GameObject tower3;
     public GameObject tower4;
 
+    public Transform earth;
 
     private int towerSelected;
 
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        earth = GameObject.Find("Earth").transform;
         buildMode = false;
         resources = 0;
         towerPlacement = transform.Find("BuildArea").GetComponent<SpriteRenderer>();
@@ -36,15 +38,7 @@ public class Player : MonoBehaviour
     }
 
 
-    void Update()
-    {
 
-    }
-
-    public void EnterBuildMode(Sprite towerImage)
-    {
-
-    }
     private void OnBuild1(InputValue inputValue)
     {
         if (towerSelected == 1)
@@ -113,27 +107,35 @@ public class Player : MonoBehaviour
 
     private void OnBuild()
     {
-        if (buildMode)
+        if (buildMode && towerPlacement.gameObject.GetComponent<TowerSpaceCheck>().spaceAvailable)
         {
             if (towerSelected == 1)
             {
-                GameObject Tower1 = Instantiate(tower1, towerPlacement.gameObject.transform.position, towerPlacement.gameObject.transform.rotation);
+                PlaceTower(tower1);
+
             }else if(towerSelected == 2)
             {
-                GameObject Tower2 = Instantiate(tower2, towerPlacement.gameObject.transform.position, towerPlacement.gameObject.transform.rotation);
+                PlaceTower(tower2);
             }
             else if (towerSelected == 3)
             {
-                GameObject Tower3 = Instantiate(tower3, towerPlacement.gameObject.transform.position, towerPlacement.gameObject.transform.rotation);
+                PlaceTower(tower3);
             }
             else if (towerSelected == 4)
             {
-                GameObject Tower4 = Instantiate(tower4, towerPlacement.gameObject.transform.position, towerPlacement.gameObject.transform.rotation);
+                PlaceTower(tower4);
             }
-            buildMode = false;
-            towerPlacement.sprite = null;
-            towerSelected = 0;
+            
         }
     }
 
+    private void PlaceTower(GameObject tower)
+    {
+        GameObject Tower1 = Instantiate(tower, towerPlacement.gameObject.transform.position, towerPlacement.gameObject.transform.rotation, earth);
+        Tower1.transform.localScale = new Vector3(0.55f, 0.55f, 0);
+        Tower1.GetComponent<SpriteRenderer>().sortingOrder = -2;
+        buildMode = false;
+        towerPlacement.sprite = null;
+        towerSelected = 0;
+    }
 }
