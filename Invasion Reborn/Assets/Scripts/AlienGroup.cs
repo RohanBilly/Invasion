@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AlienGroup : MonoBehaviour
@@ -16,11 +17,27 @@ public class AlienGroup : MonoBehaviour
     
     private GameObject player;
     public int aliensRemaining;
+
+    private Vector2 targetPosition = Vector2.zero;
     void Start()
     {
         aliensRemaining = numberOfRows * numberOfColumns;
         CreateAlienGrid();
         player = GameObject.Find("Player");
+
+        Vector2 directionToTarget = targetPosition - (Vector2)transform.position;
+
+        // Ensure the direction is normalized
+        directionToTarget.Normalize();
+
+        // Calculate the angle in radians
+        float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+
+        // Adjust the angle by 90 degrees because we want "down" (negative y-axis) to face the target direction
+        angle += 90f;
+
+        // Set the rotation of the object
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     // Update is called once per frame
