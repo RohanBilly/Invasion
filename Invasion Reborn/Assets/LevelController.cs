@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class LevelController : MonoBehaviour
 {
+    public bool inMenu;
     public int levelNumber;
     public int minimumDistance;
 
@@ -14,6 +15,8 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inMenu = true;
+        
         levelNumber = 0;
 
         //Start Level

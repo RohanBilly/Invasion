@@ -23,11 +23,13 @@ public class Rotate : MonoBehaviour
     public bool slowMovement;
 
     private Player player;
+    private LevelController levelController;
 
     private void Start()
     {
         slowMovement = false;
         player = GameObject.Find("Player").GetComponent<Player>();
+        levelController = GameObject.Find("LevelController").GetComponent<LevelController>();
     }
     void Update()
     {
@@ -129,13 +131,20 @@ public class Rotate : MonoBehaviour
 
     private void OnMove(InputValue inputValue)
     {
-        moveDirection = inputValue.Get<Vector2>();
+        if (!levelController.inMenu)
+        {
+            moveDirection = inputValue.Get<Vector2>();
+        }
+       
     }
 
     public void OnSlow(InputValue inputValue)
     {
-        // Check if the action is currently being held
-        slowMovement = inputValue.isPressed;
+        if (!levelController.inMenu)
+        {
+            // Check if the action is currently being held
+            slowMovement = inputValue.isPressed;
+        }
     }
 }
 

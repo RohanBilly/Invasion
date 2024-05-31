@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public GameObject tower4;
 
     public Transform earth;
+    private LevelController levelController;
 
     private int towerSelected;
 
@@ -35,97 +36,110 @@ public class Player : MonoBehaviour
         resources = 0;
         towerPlacement = transform.Find("BuildArea").GetComponent<SpriteRenderer>();
         cameraRotation = Camera.main.GetComponent<Rotate>();
+        levelController = GameObject.Find("LevelController").GetComponent<LevelController>();
     }
 
 
 
     private void OnBuild1(InputValue inputValue)
     {
-        if (towerSelected == 1)
+        if (!levelController.inMenu)
         {
-            buildMode = false;
-            towerPlacement.sprite = null;
-            towerSelected = 0;
+            if (towerSelected == 1)
+            {
+                buildMode = false;
+                towerPlacement.sprite = null;
+                towerSelected = 0;
+            }
+            else
+            {
+                towerSelected = 1;
+                towerPlacement.sprite = tower1Image;
+                buildMode = true;
+            }
         }
-        else
-        {
-            towerSelected = 1;
-            towerPlacement.sprite = tower1Image;
-            buildMode = true;
-        }
-
     }
     private void OnBuild2(InputValue inputValue)
     {
-        if (towerSelected == 2)
+        if (!levelController.inMenu)
         {
-            buildMode = false;
-            towerPlacement.sprite = null;
-            towerSelected = 0;
+            if (towerSelected == 2)
+            {
+                buildMode = false;
+                towerPlacement.sprite = null;
+                towerSelected = 0;
+            }
+            else
+            {
+                towerSelected = 2;
+                towerPlacement.sprite = tower2Image;
+                buildMode = true;
+            }
         }
-        else
-        {
-            towerSelected = 2;
-            towerPlacement.sprite = tower2Image;
-            buildMode = true;
-        }
-
     }
 
     private void OnBuild3(InputValue inputValue)
     {
-        if (towerSelected == 3)
+        if (!levelController.inMenu)
         {
-            buildMode = false;
-            towerPlacement.sprite = null;
-            towerSelected = 0;
-        }
-        else
-        {
-            towerSelected = 3;
-            towerPlacement.sprite = tower3Image;
-            buildMode = true;
+            if (towerSelected == 3)
+            {
+                buildMode = false;
+                towerPlacement.sprite = null;
+                towerSelected = 0;
+            }
+            else
+            {
+                towerSelected = 3;
+                towerPlacement.sprite = tower3Image;
+                buildMode = true;
+            }
         }
     }
     private void OnBuild4(InputValue inputValue)
     {
-        if (towerSelected == 4)
+        if (!levelController.inMenu)
         {
-            buildMode = false;
-            towerPlacement.sprite = null;
-            towerSelected = 0;
+            if (towerSelected == 4)
+            {
+                buildMode = false;
+                towerPlacement.sprite = null;
+                towerSelected = 0;
+            }
+            else
+            {
+                towerSelected = 4;
+                towerPlacement.sprite = tower4Image;
+                buildMode = true;
+            }
         }
-        else
-        {
-            towerSelected = 4;
-            towerPlacement.sprite = tower4Image;
-            buildMode = true;
-        }
-
     }
 
 
     private void OnBuild()
     {
-        if (buildMode && towerPlacement.gameObject.GetComponent<TowerSpaceCheck>().spaceAvailable)
+        if (!levelController.inMenu)
         {
-            if (towerSelected == 1)
+            if (buildMode && towerPlacement.gameObject.GetComponent<TowerSpaceCheck>().spaceAvailable)
             {
-                PlaceTower(tower1);
+                if (towerSelected == 1)
+                {
+                    PlaceTower(tower1);
 
-            }else if(towerSelected == 2)
-            {
-                PlaceTower(tower2);
+                }
+                else if (towerSelected == 2)
+                {
+                    PlaceTower(tower2);
+                }
+                else if (towerSelected == 3)
+                {
+                    PlaceTower(tower3);
+                }
+                else if (towerSelected == 4)
+                {
+                    PlaceTower(tower4);
+                }
             }
-            else if (towerSelected == 3)
-            {
-                PlaceTower(tower3);
-            }
-            else if (towerSelected == 4)
-            {
-                PlaceTower(tower4);
-            }
-            
         }
     }
 
