@@ -103,6 +103,7 @@ public class Menus : MonoBehaviour
         }
 
         objTransform.position = targetPosition;
+ 
     }
 
     public void Select()
@@ -113,8 +114,8 @@ public class Menus : MonoBehaviour
             levelController.inMenu = false;
        }else if (menuSelection == 1)
        {
-            StartCoroutine(MoveObjectCoroutine(mainMenu.transform, 450f));
-            StartCoroutine(MoveObjectCoroutine(optionsMenu.transform, 300f));
+            StartCoroutine(MoveObjectCoroutine(mainMenu.transform, distance));
+            StartCoroutine(MoveObjectCoroutine(optionsMenu.transform, distance));
         }
     }
 

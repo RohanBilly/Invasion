@@ -103,7 +103,7 @@ public class AudioManager : MonoBehaviour
             
             if (audioSource.clip != null && !audioSource.clip.name.Contains("Music"))
             {
-                print(originalVolumes[audioSourceList.IndexOf(audioSource)] + "   "+ sfxSlider.value);
+                
                 audioSource.volume = originalVolumes[audioSourceList.IndexOf(audioSource)] * sfxSlider.value;
                 
             }

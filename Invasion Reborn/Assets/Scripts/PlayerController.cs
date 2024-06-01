@@ -64,14 +64,14 @@ public class PlayerController : MonoBehaviour
     {
         if (levelController.inMenu)
         {
-            menus.UpdateMenu(1);
+            menus.UpdateMenu(-1);
         }
     }
     private void OnDown()
     {
         if (levelController.inMenu)
         {
-            menus.UpdateMenu(-1);
+            menus.UpdateMenu(1);
         }
     }
 
