@@ -54,9 +54,8 @@ public class PlayerController : MonoBehaviour
     {
         if (levelController.inMenu)
         {
-            menus.MoveMenu();
-            levelController.inMenu = false;
-            print("Enter");
+            menus.Select();
+            
 
         }
     }

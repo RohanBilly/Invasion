@@ -6,7 +6,11 @@ using UnityEngine.UI;
 public class Menus : MonoBehaviour
 {
     private int menuSelection;
+    private LevelController levelController;
 
+
+    private GameObject mainMenu;
+    private GameObject optionsMenu;
 
     private Image playButton;
     private Image optionsButton;
@@ -36,6 +40,9 @@ public class Menus : MonoBehaviour
     {
         menuSelection = 0;
 
+        levelController = GameObject.Find("LevelController").GetComponent<LevelController>();
+        mainMenu = GameObject.Find("MainMenu");
+        optionsMenu = GameObject.Find("OptionsMenu");
         playButton = GameObject.Find("PlayButton").GetComponent<Image>();
         optionsButton = GameObject.Find("OptionsButton").GetComponent<Image>();
         exitButton = GameObject.Find("ExitButton").GetComponent<Image>();
@@ -76,16 +83,15 @@ public class Menus : MonoBehaviour
 
     public void MoveMenu()
     {
-        StartCoroutine(MoveObjectCoroutine(playButton.transform));
-        StartCoroutine(MoveObjectCoroutine(optionsButton.transform));
-        StartCoroutine(MoveObjectCoroutine(exitButton.transform));
+        
+        
     }
 
 
-    IEnumerator MoveObjectCoroutine(Transform objTransform)
+    IEnumerator MoveObjectCoroutine(Transform objTransform, float moveDistance)
     {
         Vector3 startPosition = objTransform.position;
-        Vector3 targetPosition = startPosition + new Vector3(distance, 0, 0);
+        Vector3 targetPosition = startPosition + new Vector3(moveDistance, 0, 0);
 
         float elapsedTime = 0;
 
@@ -97,6 +103,19 @@ public class Menus : MonoBehaviour
         }
 
         objTransform.position = targetPosition;
+    }
+
+    public void Select()
+    {
+       if (menuSelection == 0)
+       {
+            StartCoroutine(MoveObjectCoroutine(mainMenu.transform, distance));
+            levelController.inMenu = false;
+       }else if (menuSelection == 1)
+       {
+            StartCoroutine(MoveObjectCoroutine(mainMenu.transform, 450f));
+            StartCoroutine(MoveObjectCoroutine(optionsMenu.transform, 300f));
+        }
     }
 
     void Update()
