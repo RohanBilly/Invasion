@@ -40,6 +40,9 @@ public class Menus : MonoBehaviour
 
     public RectTransform canvasRectTransform;
 
+    private Slider musicVolumeSlider;
+    private Slider sfxVolumeSlider;
+
     // Duration of the movement in seconds
     public float duration = 1.0f;
 
@@ -62,6 +65,9 @@ public class Menus : MonoBehaviour
         sfxSliderBg = GameObject.Find("SfxBackground").GetComponent<Image>();
         musicSliderBg = GameObject.Find("MusicBackground").GetComponent<Image>();
         returnButton = GameObject.Find("ReturnButton").GetComponent<Image>();
+
+        musicVolumeSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();
+        sfxVolumeSlider = GameObject.Find("SfxSlider").GetComponent<Slider>();
 
         canvasRectTransform = gameObject.GetComponent<RectTransform>();
     }
@@ -142,13 +148,6 @@ public class Menus : MonoBehaviour
         }
     }
 
-    public void MoveMenu()
-    {
-        
-        
-    }
-
-
     IEnumerator MoveObjectCoroutine(Transform objTransform, float moveDistance)
     {
         Vector3 startPosition = objTransform.position;
@@ -209,6 +208,17 @@ public class Menus : MonoBehaviour
             exitButton.sprite = exitUnselected;
         }
        
+    }
+
+    public void ChangeSliderValue(int value)
+    {
+        if (menuSelection == 3)
+        {
+            musicVolumeSlider.value += value * 0.1f;
+        }else if (menuSelection == 4)
+        {
+            sfxVolumeSlider.value += value * 0.1f;
+        }
     }
 
     void Update()

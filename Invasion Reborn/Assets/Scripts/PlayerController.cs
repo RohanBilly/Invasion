@@ -75,6 +75,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
-    
+    private void OnMove()
+    {
+        print("OH hi there");
+    }
+
+
 }

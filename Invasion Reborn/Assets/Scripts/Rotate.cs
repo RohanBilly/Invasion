@@ -25,11 +25,15 @@ public class Rotate : MonoBehaviour
     private Player player;
     private LevelController levelController;
 
+    private Menus menu;
+
     private void Start()
     {
         slowMovement = false;
         player = GameObject.Find("Player").GetComponent<Player>();
         levelController = GameObject.Find("LevelController").GetComponent<LevelController>();
+        menu = GameObject.Find("MenuButtonsCanvas").GetComponent<Menus>();
+
     }
     void Update()
     {
@@ -134,6 +138,10 @@ public class Rotate : MonoBehaviour
         if (!levelController.inMenu)
         {
             moveDirection = inputValue.Get<Vector2>();
+        }
+        else
+        {
+            menu.ChangeSliderValue((int)inputValue.Get<Vector2>().x);
         }
        
     }

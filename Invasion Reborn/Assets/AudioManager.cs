@@ -92,7 +92,16 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeMusicVolume()
     {
-        
+        foreach (var audioSource in audioSourceList)
+        {
+
+            if (audioSource.clip != null && audioSource.clip.name.Contains("Music"))
+            {
+
+                audioSource.volume = originalVolumes[audioSourceList.IndexOf(audioSource)] * musicSlider.value;
+
+            }
+        }
     }
 
     public void ChangeSfxVolume() 
