@@ -55,8 +55,10 @@ public class PlayerController : MonoBehaviour
         if (levelController.inMenu)
         {
             menus.Select();
-            
-
+        }
+        else
+        {
+            levelController.EnterPressed();
         }
     }
 
@@ -73,11 +75,6 @@ public class PlayerController : MonoBehaviour
         {
             menus.UpdateMenu(1);
         }
-    }
-
-    private void OnMove()
-    {
-        print("OH hi there");
     }
 
 

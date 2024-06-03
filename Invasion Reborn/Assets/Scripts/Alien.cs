@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Alien : MonoBehaviour
 {
-    
+    private LevelController levelController;
     public AlienGroup alienGroup;
     public float moveSpeed = 0.3f; // Speed at which the sprite moves towards the origin
     private GameObject player;
@@ -14,6 +14,7 @@ public class Alien : MonoBehaviour
     {
         player = GameObject.Find("Player");
         alienGroup = GetComponentInParent<AlienGroup>();
+        levelController = GameObject.Find("LevelController").GetComponent<LevelController>();
     }
     private void Start()
     {
@@ -39,6 +40,7 @@ public class Alien : MonoBehaviour
             player.GetComponent<Player>().resources += 10;
             Destroy(gameObject);
             alienGroup.aliensRemaining -= 1;
+            levelController.aliensRemaining -= 1;
         }else if (collision.GetComponent<AssultProjectile>() != null)
         {
             print("ouch");

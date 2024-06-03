@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -7,6 +8,9 @@ using UnityEngine.UIElements;
 public class LevelController : MonoBehaviour
 {
     public bool inMenu;
+    public bool levelStarted;
+
+   
     public int levelNumber;
     public int minimumDistance;
 
@@ -16,20 +20,8 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         inMenu = true;
-        
+        levelStarted = false;
         levelNumber = 0;
-
-        //Start Level
-        // Generate a random angle in radians
-        float angle = Random.Range(0f, Mathf.PI * 2);
-
-        // Calculate the position on the circumference
-        float x = Mathf.Cos(angle) * minimumDistance;
-        float y = Mathf.Sin(angle) * minimumDistance;
-        Vector2 position = new Vector2(x, y);
-
-        SpawnAlienGroup(position, 3, 3, 0.28f, 0.24f, 0.45f);
-       
     }
     private void SpawnAlienGroup(Vector2 position, int rows, int columns, float horizontalSpacing, float verticalSpacing, float moveSpeed)
     {
@@ -39,8 +31,47 @@ public class LevelController : MonoBehaviour
         enemies.GetComponent<AlienGroup>().horizontalSpacing = horizontalSpacing;
         enemies.GetComponent<AlienGroup>().verticalSpacing = verticalSpacing;
         enemies.GetComponent<AlienGroup>().moveSpeed = moveSpeed;
+        aliensRemaining += rows * columns;
     }
-    // Update is called once per frame
+
+    private void Level1()
+    {
+        SpawnAlienGroup(RandomPosition(), 3, 3, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 3;
+        SpawnAlienGroup(RandomPosition(), 3, 3, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 3;
+        SpawnAlienGroup(RandomPosition(), 3, 3, 0.28f, 0.24f, 0.45f);
+
+    }
+
+    
+
+    public void EnterPressed()
+    {
+        if (!levelStarted)
+        {
+            if (levelNumber == 0)
+            {
+                levelStarted = true;
+                Level1();
+
+            }
+        }
+    }
+
+    private Vector2 RandomPosition()
+    {
+
+        float angle = Random.Range(0f, Mathf.PI * 2);
+        float x = Mathf.Cos(angle) * minimumDistance;
+        float y = Mathf.Sin(angle) * minimumDistance;
+        Vector2 position = new Vector2(x, y);
+        return position;
+    }
+
+
+
+
     void Update()
     {
         

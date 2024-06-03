@@ -293,17 +293,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e435008b-3f9b-4c25-b4b2-c6eb7067620d"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b52df205-ee60-4749-8bab-c69ea40eed9e"",
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
