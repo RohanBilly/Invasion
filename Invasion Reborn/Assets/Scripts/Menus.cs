@@ -16,6 +16,10 @@ public class Menus : MonoBehaviour
     private Image optionsButton;
     private Image exitButton;
 
+    private Image sfxSliderBg;
+    private Image musicSliderBg;
+    private Image returnButton;
+
     public Sprite playUnselected;
     public Sprite playSelected;
 
@@ -25,6 +29,14 @@ public class Menus : MonoBehaviour
     public Sprite exitUnselected;
     public Sprite exitSelected;
 
+    public Sprite SfxSliderUnselected;
+    public Sprite SfxSliderSelected;
+
+    public Sprite musicSliderUnselected;
+    public Sprite musicSliderSelected;
+
+    public Sprite returnButtonUnselected;
+    public Sprite returnButtonSelected;
 
     public RectTransform canvasRectTransform;
 
@@ -47,19 +59,38 @@ public class Menus : MonoBehaviour
         optionsButton = GameObject.Find("OptionsButton").GetComponent<Image>();
         exitButton = GameObject.Find("ExitButton").GetComponent<Image>();
 
+        sfxSliderBg = GameObject.Find("SfxBackground").GetComponent<Image>();
+        musicSliderBg = GameObject.Find("MusicBackground").GetComponent<Image>();
+        returnButton = GameObject.Find("ReturnButton").GetComponent<Image>();
+
         canvasRectTransform = gameObject.GetComponent<RectTransform>();
     }
 
     public void UpdateMenu(int value)
     {
-        menuSelection = menuSelection + value;
-        if (menuSelection < 0)
+        if (menuSelection < 3)
         {
-            menuSelection = 2;
-        }else if (menuSelection > 2)
-        {
-            menuSelection = 0;
+            menuSelection = menuSelection + value;
+            if (menuSelection < 0)
+            {
+                menuSelection = 2;
+            }
+            else if (menuSelection > 2)
+            {
+                menuSelection = 0;
+            }
         }
+        else
+        {
+            menuSelection = menuSelection + value;
+            if (menuSelection < 3)
+            {
+                menuSelection = 5;
+            }else if(menuSelection > 5){
+                menuSelection = 3;
+            }
+        }
+        
 
         if (menuSelection == 0)
         {
@@ -78,6 +109,36 @@ public class Menus : MonoBehaviour
             playButton.sprite = playUnselected;
             optionsButton.sprite = optionsUnselected;
             exitButton.sprite = exitSelected;
+        }
+        else if (menuSelection == 3)
+        {
+            playButton.sprite = playUnselected;
+            optionsButton.sprite = optionsUnselected;
+            exitButton.sprite = exitUnselected;
+
+            musicSliderBg.sprite = musicSliderSelected;
+            sfxSliderBg.sprite = SfxSliderUnselected;
+            returnButton.sprite = returnButtonUnselected;
+        }
+        else if (menuSelection == 4)
+        {
+            playButton.sprite = playUnselected;
+            optionsButton.sprite = optionsUnselected;
+            exitButton.sprite = exitUnselected;
+
+            musicSliderBg.sprite = musicSliderUnselected;
+            sfxSliderBg.sprite = SfxSliderSelected;
+            returnButton.sprite = returnButtonUnselected;
+        }
+        else if (menuSelection == 5)
+        {
+            playButton.sprite = playUnselected;
+            optionsButton.sprite = optionsUnselected;
+            exitButton.sprite = exitUnselected;
+
+            musicSliderBg.sprite = musicSliderUnselected;
+            sfxSliderBg.sprite = SfxSliderUnselected;
+            returnButton.sprite = returnButtonSelected;
         }
     }
 
@@ -116,7 +177,38 @@ public class Menus : MonoBehaviour
        {
             StartCoroutine(MoveObjectCoroutine(mainMenu.transform, distance));
             StartCoroutine(MoveObjectCoroutine(optionsMenu.transform, distance));
+            menuSelection = 3;
+
+            musicSliderBg.sprite = musicSliderSelected;
+            sfxSliderBg.sprite = SfxSliderUnselected;
+            returnButton.sprite = returnButtonUnselected;
         }
+        else if (menuSelection == 2)
+        {
+            //exit
+        }else if (menuSelection == 3)
+        {
+            //Control music slider
+        }
+        else if (menuSelection == 4)
+        {
+            //Control sfx slider
+        }
+        else if (menuSelection == 5)
+        {
+          
+            StartCoroutine(MoveObjectCoroutine(mainMenu.transform, -distance));
+            StartCoroutine(MoveObjectCoroutine(optionsMenu.transform, -distance));
+            menuSelection = 0;
+
+            
+            returnButton.sprite = returnButtonUnselected;
+
+            playButton.sprite = playSelected;
+            optionsButton.sprite = optionsUnselected;
+            exitButton.sprite = exitUnselected;
+        }
+       
     }
 
     void Update()
