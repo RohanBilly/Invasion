@@ -48,7 +48,7 @@ public class AssultProjectile : MonoBehaviour
 
                 Vector2 directionToTarget = (alien.transform.position - transform.position).normalized;
                 float angle = Vector2.Angle(facingDirection, directionToTarget);
-                print(angle);
+                
                 if (angle <= 90)
                 {
                     closest = alien;
