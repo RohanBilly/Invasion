@@ -4,7 +4,7 @@ public class MoveProjectile : MonoBehaviour
 {
     public GameObject origin;
     private Vector2 direction;
-    public float speed = 40f;
+    public float speed = 50f;
 
     private void Awake()
     {

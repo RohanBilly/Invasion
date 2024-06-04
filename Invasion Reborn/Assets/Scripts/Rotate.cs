@@ -62,7 +62,7 @@ public class Rotate : MonoBehaviour
         {
             if (rotationSpeed < maxRotationSpeed - accelerationSpeed)
             {
-                rotationSpeed += accelerationSpeed;
+                rotationSpeed += accelerationSpeed * Time.deltaTime;
             }
             else
             {
@@ -74,7 +74,7 @@ public class Rotate : MonoBehaviour
         {
             if (rotationSpeed > -maxRotationSpeed + accelerationSpeed)
             {
-                rotationSpeed -= accelerationSpeed;
+                rotationSpeed -= accelerationSpeed * Time.deltaTime;
             }
             else
             {
@@ -89,7 +89,7 @@ public class Rotate : MonoBehaviour
         {
             if (rotationSpeed < slowMaxRotationSpeed - slowAccelerationSpeed)
             {
-                rotationSpeed += slowAccelerationSpeed;
+                rotationSpeed += slowAccelerationSpeed * Time.deltaTime;
             }
             else
             {
@@ -101,7 +101,7 @@ public class Rotate : MonoBehaviour
         {
             if (rotationSpeed > -slowMaxRotationSpeed + slowAccelerationSpeed)
             {
-                rotationSpeed -= slowAccelerationSpeed;
+                rotationSpeed -= slowAccelerationSpeed * Time.deltaTime;
             }
             else
             {
