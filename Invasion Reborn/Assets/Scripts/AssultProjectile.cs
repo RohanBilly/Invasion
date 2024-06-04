@@ -9,11 +9,16 @@ public class AssultProjectile : MonoBehaviour
     private Vector2 direction;
     public float speed = 40f;
 
+ 
+
     void Awake()
     {
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = -1;
         closestAlien = FindClosestAlien();
         direction = (transform.position - closestAlien.transform.position).normalized;
-        Destroy(gameObject, 3f);
+        
+        
+        Destroy(gameObject, 2f);
 
         
     }
@@ -27,10 +32,12 @@ public class AssultProjectile : MonoBehaviour
 
     GameObject FindClosestAlien()
     {
+        Vector2 facingDirection = transform.up;
+
         // Get all objects tagged as "Alien"
         GameObject[] aliens = GameObject.FindGameObjectsWithTag("Alien");
         GameObject closest = null;
-        float minDistance = Mathf.Infinity;
+        float minDistance = 5f;
         Vector3 currentPosition = transform.position;
 
         foreach (GameObject alien in aliens)
@@ -38,11 +45,28 @@ public class AssultProjectile : MonoBehaviour
             float distance = Vector3.Distance(alien.transform.position, currentPosition);
             if (distance < minDistance)
             {
-                closest = alien;
-                minDistance = distance;
+
+                Vector2 directionToTarget = (alien.transform.position - transform.position).normalized;
+                float angle = Vector2.Angle(facingDirection, directionToTarget);
+                print(angle);
+                if (angle <= 90)
+                {
+                    closest = alien;
+                    minDistance = distance;
+                }
+
+
             }
         }
-
-        return closest;
+        if (closest != null)
+        {
+            return closest;
+        }
+        else
+        {
+            return gameObject;
+            
+        }
+        
     }
 }
