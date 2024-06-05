@@ -13,7 +13,8 @@ public class LevelController : MonoBehaviour
     private Menus menu;
     private Player player;
     private Rotate cameraRotation;
-    
+
+    public bool startingText;
     public bool inMenu;
     public bool gameOver;
     public bool levelStarted;
@@ -37,7 +38,8 @@ public class LevelController : MonoBehaviour
         cameraRotation = Camera.main.GetComponent<Rotate>();
         inMenu = true;
         levelStarted = false;
-        levelNumber = 0;
+
+        startingText = true;
     }
     private void SpawnAlienGroup(Vector2 position, int rows, int columns, float horizontalSpacing, float verticalSpacing, float moveSpeed)
     {
@@ -53,30 +55,77 @@ public class LevelController : MonoBehaviour
 
     private void Level1()
     {
+        minimumDistance = 6;
+        startingText = false;
         player.resources = 50;
-        SpawnAlienGroup(RandomPosition(), 1, 10, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 1, 2, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;
-        SpawnAlienGroup(RandomPosition(), 2, 2, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 1, 2, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 2;
         SpawnAlienGroup(RandomPosition(), 1, 1, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;
         SpawnAlienGroup(RandomPosition(), 1, 3, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 3;
         SpawnAlienGroup(RandomPosition(), 2, 1, 0.28f, 0.24f, 0.45f);
 
     }
 
-    
+    private void Level2()
+    {
+        minimumDistance = 6;
+        player.resources = 50;
+        SpawnAlienGroup(RandomPosition(), 1, 2, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 3;
+        SpawnAlienGroup(RandomPosition(), 1, 2, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 2;
+        SpawnAlienGroup(RandomPosition(), 1, 1, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 3;
+        SpawnAlienGroup(RandomPosition(), 1, 3, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 3;
+        SpawnAlienGroup(RandomPosition(), 2, 1, 0.28f, 0.24f, 0.45f);
+
+    }
+
+    private void Level3()
+    {
+        minimumDistance = 6;
+        player.resources = 50;
+        SpawnAlienGroup(RandomPosition(), 1, 2, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 3;
+        SpawnAlienGroup(RandomPosition(), 1, 2, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 2;
+        SpawnAlienGroup(RandomPosition(), 1, 1, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 3;
+        SpawnAlienGroup(RandomPosition(), 1, 3, 0.28f, 0.24f, 0.45f);
+        minimumDistance += 3;
+        SpawnAlienGroup(RandomPosition(), 2, 1, 0.28f, 0.24f, 0.45f);
+
+    }
+
+
+
 
     public void EnterPressed()
     {
         if (!levelStarted && !gameOver)
         {
-            if (levelNumber == 0)
+            levelNumber += 1;
+            if (levelNumber == 1)
             {
                 levelStarted = true;
+                startingText = false;
                 Level1();
-
+            }else if (levelNumber == 2)
+            {
+                levelStarted = true;
+                Level2();
+            }else if (levelNumber == 3)
+            {
+                levelStarted = true;
+                Level3();
             }
-        }else if (!levelStarted && gameOver)
+        }
+        else if (!levelStarted && gameOver)
         {
             ResetScene();
             inMenu = true;
@@ -108,8 +157,16 @@ public class LevelController : MonoBehaviour
                 levelStarted = false;
                 gameOver = true;
                 gameplayText.text = "GAME OVER";
+                levelNumber = 1;
                 cameraRotation.rotationSpeed = 0;
                 cameraRotation.moveDirection = Vector3.zero;
+            }else if (aliensRemaining == 0 && !gameOver && !startingText)
+            {
+                levelStarted = false;
+                gameplayText.text = "ROUND COMPLETE";
+
+                earthHealth = maxEarthHealth;
+                player.resources = 50;
             }
         }
     }
@@ -128,6 +185,6 @@ public class LevelController : MonoBehaviour
         }
         earthHealth = maxEarthHealth;
         player.resources = 0;
-        levelNumber = 0;
+        
     }
 }

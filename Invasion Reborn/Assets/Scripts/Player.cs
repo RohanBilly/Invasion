@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        fireRate = 0.3f;
+        
         shootTimer = 0;
         towerSpaceCheck = GameObject.Find("BuildArea").GetComponent<TowerSpaceCheck>();
         earth = GameObject.Find("Earth").transform;

@@ -25,7 +25,7 @@ public class Alien : MonoBehaviour
 
     void Update()
     {
-        if(health < 0)
+        if(health <= 0)
         {
             DestroyAlien();
             player.GetComponent<Player>().resources += 10;
