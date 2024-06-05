@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Menus : MonoBehaviour
 {
-    private int menuSelection;
+    public int menuSelection;
     private LevelController levelController;
 
 
@@ -219,6 +219,19 @@ public class Menus : MonoBehaviour
         {
             sfxVolumeSlider.value += value * 0.1f;
         }
+    }
+
+    public void BackToMainMenu()
+    {
+        StartCoroutine(MoveObjectCoroutine(mainMenu.transform, -distance));
+        menuSelection = 0;
+
+
+        returnButton.sprite = returnButtonUnselected;
+
+        playButton.sprite = playSelected;
+        optionsButton.sprite = optionsUnselected;
+        exitButton.sprite = exitUnselected;
     }
 
     void Update()

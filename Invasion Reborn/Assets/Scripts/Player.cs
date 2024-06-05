@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
 
     private void OnShoot()
     {
-        if (!levelController.inMenu)
+        if (!levelController.inMenu && !levelController.gameOver)
         {
             if (shootTimer > fireRate)
             {
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
 
     private void OnBuild1(InputValue inputValue)
     {
-        if (!levelController.inMenu)
+        if (!levelController.inMenu && !levelController.gameOver)
         {
             if (towerSpaceCheck.overUpgradeBay)
             {
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
     }
     private void OnBuild2(InputValue inputValue)
     {
-        if (!levelController.inMenu)
+        if (!levelController.inMenu && !levelController.gameOver)
         {
             if (towerSpaceCheck.overUpgradeBay)
             {
@@ -103,14 +103,14 @@ public class Player : MonoBehaviour
 
     private void OnBuild3(InputValue inputValue)
     {
-        if (!levelController.inMenu)
+        if (!levelController.inMenu && !levelController.gameOver)
         {
             ToggleTower(3);
         }
     }
     private void OnBuild4(InputValue inputValue)
     {
-        if (!levelController.inMenu)
+        if (!levelController.inMenu && !levelController.gameOver)
         {
             ToggleTower(4);
         }
@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
 
     private void OnBuild()
     {
-        if (!levelController.inMenu)
+        if (!levelController.inMenu && !levelController.gameOver)
         {
             if (buildMode && towerPlacement.gameObject.GetComponent<TowerSpaceCheck>().spaceAvailable)
             {

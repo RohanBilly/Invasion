@@ -135,13 +135,12 @@ public class Rotate : MonoBehaviour
 
     private void OnMove(InputValue inputValue)
     {
-        if (!levelController.inMenu)
+        if (!levelController.inMenu && !levelController.gameOver)
         {
             moveDirection = inputValue.Get<Vector2>();
         }
         else
         {
-            print("EHRE");
             menu.ChangeSliderValue((int)inputValue.Get<Vector2>().x);
         }
        

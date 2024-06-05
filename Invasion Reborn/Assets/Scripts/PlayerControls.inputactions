@@ -282,17 +282,6 @@
                 },
                 {
                     "name": "",
-                    "id": "949aad24-17f5-4559-b68b-75f52c596ce5",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Enter",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2e9cdc0a-e70d-4e30-b216-fa4c98b20a21",
                     "path": "<Keyboard>/w",
                     "interactions": "",

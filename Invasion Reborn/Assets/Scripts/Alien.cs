@@ -11,10 +11,8 @@ public class Alien : MonoBehaviour
     private GameObject player;
     private int health;
 
-    private bool destroyed;
     private void Awake()
     {
-        destroyed = false;
         player = GameObject.Find("Player");
         alienGroup = GetComponentInParent<AlienGroup>();
         levelController = GameObject.Find("LevelController").GetComponent<LevelController>();
@@ -30,44 +28,36 @@ public class Alien : MonoBehaviour
         if(health < 0)
         {
             DestroyAlien();
-            destroyed = true;
             player.GetComponent<Player>().resources += 10;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<DamageBlip>() != null) //Hits Earth
+        if (collision.name == "Earth") //Hits Earth
         {
             collision.GetComponent<DamageBlip>().TakeDamage();
+            levelController.earthHealth -= 1;
             DestroyAlien();
-            destroyed = true;
         }
         else if (collision.GetComponent<MoveProjectile>() != null)
         {
             Destroy(collision.gameObject);
-            health -= 3;
+            health -= 5;
            
         }else if (collision.GetComponent<AssultProjectile>() != null)
         {
             
             Destroy(collision.gameObject);
-            health -= 1;
+            health -= 2;
         }
     }
 
     private void DestroyAlien()
     {
-        if (!destroyed)
-        {
-            
             alienGroup.aliensRemaining -= 1;
             levelController.aliensRemaining -= 1;
             Destroy(gameObject);
-        }
-        
-
-        
     }
 }
 
