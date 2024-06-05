@@ -824,11 +824,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c83c97e32a1024286c1a03258bdf10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0}
   rotationPoint: {x: 0, y: 0, z: 0}
   rotationSpeed: 0
   accelerationSpeed: 132.5
   decellerationSpeed: 756.9
-  maxRotationSpeed: 50
+  maxRotationSpeed: 70.6
   slowAccelerationSpeed: 50
   slowDecellerationSpeed: 20
   slowMaxRotationSpeed: 24.2
