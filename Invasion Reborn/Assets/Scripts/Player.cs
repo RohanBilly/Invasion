@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
         {
             if (shootTimer > fireRate)
             {
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("shootLazer");
                 Vector3 position = gameObject.transform.position;
                 Quaternion rotation = gameObject.transform.rotation;
                 Instantiate(ShipProjectile, position, rotation);

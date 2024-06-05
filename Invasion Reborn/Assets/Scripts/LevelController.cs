@@ -76,29 +76,32 @@ public class LevelController : MonoBehaviour
         player.resources = 50;
         SpawnAlienGroup(RandomPosition(), 1, 2, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;
-        SpawnAlienGroup(RandomPosition(), 1, 2, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 1, 3, 0.28f, 0.24f, 0.45f);
         minimumDistance += 2;
         SpawnAlienGroup(RandomPosition(), 1, 1, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;
-        SpawnAlienGroup(RandomPosition(), 1, 3, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 2, 3, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;
         SpawnAlienGroup(RandomPosition(), 2, 1, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 3, 1, 0.28f, 0.24f, 0.45f);
 
     }
 
     private void Level3()
     {
-        minimumDistance = 6;
+        minimumDistance = 5;
         player.resources = 50;
         SpawnAlienGroup(RandomPosition(), 1, 2, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;
-        SpawnAlienGroup(RandomPosition(), 1, 2, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 3, 3, 0.28f, 0.24f, 0.45f);
         minimumDistance += 2;
-        SpawnAlienGroup(RandomPosition(), 1, 1, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 3, 1, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;
-        SpawnAlienGroup(RandomPosition(), 1, 3, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 2, 3, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 2, 3, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;
         SpawnAlienGroup(RandomPosition(), 2, 1, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 3, 1, 0.28f, 0.24f, 0.45f);
 
     }
 

@@ -6,7 +6,7 @@ public class WindFarm : MonoBehaviour
     private LevelController levelController;
 
     public float resourceTimer;
-    public float timeToWait = 5f;
+    private float timeToWait = 1.5f;
     void Start()
     {
         levelController = GameObject.Find("LevelController").GetComponent<LevelController>();
@@ -21,7 +21,7 @@ public class WindFarm : MonoBehaviour
             resourceTimer += Time.deltaTime;
             if (resourceTimer > timeToWait)
             {
-                player.GetComponent<Player>().resources += 10;
+                player.GetComponent<Player>().resources += 1;
                 resourceTimer = 0;
             }
         }

@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceTimer: 0
-  timeToWait: 5
+  timeToWait: 1
 --- !u!61 &-8900944590179501190
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ public class Alien : MonoBehaviour
         {
             
             Destroy(collision.gameObject);
-            health -= 2;
+            health -= 1;
         }
     }
 
