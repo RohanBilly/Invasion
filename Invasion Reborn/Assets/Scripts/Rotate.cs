@@ -141,6 +141,7 @@ public class Rotate : MonoBehaviour
         }
         else
         {
+            print("EHRE");
             menu.ChangeSliderValue((int)inputValue.Get<Vector2>().x);
         }
        

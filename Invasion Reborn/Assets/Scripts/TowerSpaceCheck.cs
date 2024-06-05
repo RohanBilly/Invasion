@@ -5,10 +5,11 @@ using UnityEngine;
 public class TowerSpaceCheck : MonoBehaviour
 {
     public bool spaceAvailable;
-
+    public bool overUpgradeBay;
     private int towersColliding;
     void Start()
     {
+        overUpgradeBay = false;
         towersColliding = 0;
         spaceAvailable = true;
     }
@@ -34,6 +35,10 @@ public class TowerSpaceCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Tower"))
         {
+            if (other.GetComponent<UpgradeBay>() != null)
+            {
+                overUpgradeBay = true;
+            }
             towersColliding++;
         }
     }
@@ -41,6 +46,10 @@ public class TowerSpaceCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Tower"))
         {
+            if (other.GetComponent<UpgradeBay>() != null)
+            {
+                overUpgradeBay = false;
+            }
             towersColliding--;
         }
     }

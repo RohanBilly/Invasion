@@ -32,11 +32,12 @@ public class LevelController : MonoBehaviour
         enemies.GetComponent<AlienGroup>().verticalSpacing = verticalSpacing;
         enemies.GetComponent<AlienGroup>().moveSpeed = moveSpeed;
         aliensRemaining += rows * columns;
+        
     }
 
     private void Level1()
     {
-        SpawnAlienGroup(RandomPosition(), 3, 3, 0.28f, 0.24f, 0.45f);
+        SpawnAlienGroup(RandomPosition(), 1, 1, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;
         SpawnAlienGroup(RandomPosition(), 3, 3, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;

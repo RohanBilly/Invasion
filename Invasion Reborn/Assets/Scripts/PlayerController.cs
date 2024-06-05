@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerControls playerControls;
     private LevelController levelController;
 
-    public GameObject ShipProjectile;
+    
 
     private Menus menus;
 
@@ -29,17 +29,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnShoot()
-    {
-        if (!levelController.inMenu)
-        {
-           
-            Vector3 position = gameObject.transform.position;
-            Quaternion rotation = gameObject.transform.rotation;
-            Instantiate(ShipProjectile, position, rotation);
-        }
-        
-    }
+    
 
     private void OnPause()
     {

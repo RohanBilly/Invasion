@@ -5,12 +5,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public int resources;
     public bool buildMode;
     private SpriteRenderer towerPlacement;
+    private Rotate rotate;
 
     public Sprite tower1Image;
     public Sprite tower2Image;
@@ -22,40 +24,65 @@ public class Player : MonoBehaviour
     public GameObject tower3;
     public GameObject tower4;
 
-    public Transform earth;
+
+    public GameObject ShipProjectile;
+
+    private Transform earth;
     private LevelController levelController;
 
     private int towerSelected;
 
     private Rotate cameraRotation;
 
+    private TowerSpaceCheck towerSpaceCheck;
+
+    public int costOfFireRateUpgrade = 50;
+    public int costOfSpeedUpgrade = 50;
+
+    private float shootTimer;
+    public float fireRate;
+
+
     void Start()
     {
+        fireRate = 0.3f;
+        shootTimer = 0;
+        towerSpaceCheck = GameObject.Find("BuildArea").GetComponent<TowerSpaceCheck>();
         earth = GameObject.Find("Earth").transform;
         buildMode = false;
         resources = 0;
         towerPlacement = transform.Find("BuildArea").GetComponent<SpriteRenderer>();
         cameraRotation = Camera.main.GetComponent<Rotate>();
         levelController = GameObject.Find("LevelController").GetComponent<LevelController>();
+        rotate = Camera.main.GetComponent<Rotate>();  
     }
 
+    private void OnShoot()
+    {
+        if (!levelController.inMenu)
+        {
+            if (shootTimer > fireRate)
+            {
+                Vector3 position = gameObject.transform.position;
+                Quaternion rotation = gameObject.transform.rotation;
+                Instantiate(ShipProjectile, position, rotation);
+                shootTimer = 0;
+            }
+            
+        }
 
+    }
 
     private void OnBuild1(InputValue inputValue)
     {
         if (!levelController.inMenu)
         {
-            if (towerSelected == 1)
+            if (towerSpaceCheck.overUpgradeBay)
             {
-                buildMode = false;
-                towerPlacement.sprite = null;
-                towerSelected = 0;
-            }
-            else
+                UpgradeFireRate();
+            }else
             {
-                towerSelected = 1;
-                towerPlacement.sprite = tower1Image;
-                buildMode = true;
+                ToggleTower(1);
             }
         }
     }
@@ -63,17 +90,13 @@ public class Player : MonoBehaviour
     {
         if (!levelController.inMenu)
         {
-            if (towerSelected == 2)
+            if (towerSpaceCheck.overUpgradeBay)
             {
-                buildMode = false;
-                towerPlacement.sprite = null;
-                towerSelected = 0;
+                UpgradeSpeed();  
             }
             else
             {
-                towerSelected = 2;
-                towerPlacement.sprite = tower2Image;
-                buildMode = true;
+                ToggleTower(2);
             }
         }
     }
@@ -82,39 +105,19 @@ public class Player : MonoBehaviour
     {
         if (!levelController.inMenu)
         {
-            if (towerSelected == 3)
-            {
-                buildMode = false;
-                towerPlacement.sprite = null;
-                towerSelected = 0;
-            }
-            else
-            {
-                towerSelected = 3;
-                towerPlacement.sprite = tower3Image;
-                buildMode = true;
-            }
+            ToggleTower(3);
         }
     }
     private void OnBuild4(InputValue inputValue)
     {
         if (!levelController.inMenu)
         {
-            if (towerSelected == 4)
-            {
-                buildMode = false;
-                towerPlacement.sprite = null;
-                towerSelected = 0;
-            }
-            else
-            {
-                towerSelected = 4;
-                towerPlacement.sprite = tower4Image;
-                buildMode = true;
-            }
+            ToggleTower(4);
         }
     }
 
+
+    
 
     private void OnBuild()
     {
@@ -151,5 +154,47 @@ public class Player : MonoBehaviour
         buildMode = false;
         towerPlacement.sprite = null;
         towerSelected = 0;
+    }
+
+    private void ToggleTower(int towerNumber)
+    {
+        if (towerSelected == towerNumber)
+        {
+            buildMode = false;
+            towerPlacement.sprite = null;
+            towerSelected = 0;
+        }
+        else
+        {
+            towerSelected = towerNumber;
+            towerPlacement.sprite = tower4Image;
+            buildMode = true;
+        }
+    }
+
+    private void UpgradeFireRate()
+    {
+        if (resources > 50)
+        {
+            fireRate -= 0.03f;
+            resources -= 50;
+        }
+    }
+
+    private void UpgradeSpeed()
+    {
+        if (resources > 50)
+        {
+            rotate.maxRotationSpeed += 5;
+            resources -= 50;
+        }
+    }
+
+    private void Update()
+    {
+        if (!levelController.inMenu)
+        {
+            shootTimer += Time.deltaTime;
+        }
     }
 }

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2546645565901887843}
   - component: {fileID: 7828868420365771198}
   - component: {fileID: -2083021578781360620}
+  - component: {fileID: 3411096043789832154}
   m_Layer: 0
-  m_Name: Tower4
+  m_Name: UpgradeBay
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!114 &3411096043789832154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540736643222077093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a76b1d27b580148b001e71652594c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
