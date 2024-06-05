@@ -127,14 +127,22 @@ public class Player : MonoBehaviour
             {
                 if (towerSelected == 1)
                 {
-                    PlaceTower(tower1);
-
+                    if (resources >= 100)
+                    {
+                        PlaceTower(tower1);
+                        resources -= 100;
+                    }
+                    
                 }
                 else if (towerSelected == 2)
                 {
-                    PlaceTower(tower2);
-                }
-                else if (towerSelected == 3)
+                    if (resources >= 50)
+                    {
+                        PlaceTower(tower2);
+                        resources -= 50;
+                    }
+                    }
+                    else if (towerSelected == 3)
                 {
                     PlaceTower(tower3);
                 }

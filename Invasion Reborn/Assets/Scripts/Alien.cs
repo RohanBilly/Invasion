@@ -55,9 +55,16 @@ public class Alien : MonoBehaviour
 
     private void DestroyAlien()
     {
-            alienGroup.aliensRemaining -= 1;
+        alienGroup.aliensRemaining -= 1;
+        if (levelController.aliensRemaining < 1)
+        {
+            levelController.aliensRemaining = 0;
+        }
+        else
+        {
             levelController.aliensRemaining -= 1;
-            Destroy(gameObject);
+        }
+        Destroy(gameObject);
     }
 }
 

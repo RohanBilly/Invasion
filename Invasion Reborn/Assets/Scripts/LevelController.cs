@@ -53,6 +53,7 @@ public class LevelController : MonoBehaviour
 
     private void Level1()
     {
+        player.resources = 50;
         SpawnAlienGroup(RandomPosition(), 1, 10, 0.28f, 0.24f, 0.45f);
         minimumDistance += 3;
         SpawnAlienGroup(RandomPosition(), 2, 2, 0.28f, 0.24f, 0.45f);
