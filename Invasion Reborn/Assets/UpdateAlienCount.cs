@@ -14,6 +14,9 @@ public class UpdateAlienCount : MonoBehaviour
 
     private void Update()
     {
-        tmpText.text = levelController.aliensRemaining.ToString();
+        if (!levelController.gameOver)
+        {
+            tmpText.text = levelController.aliensRemaining.ToString();
+        }
     }
 }

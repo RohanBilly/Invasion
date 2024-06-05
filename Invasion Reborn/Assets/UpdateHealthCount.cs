@@ -16,6 +16,10 @@ public class UpdateHealthCount : MonoBehaviour
 
     private void Update()
     {
-        tmpText.text = levelController.earthHealth.ToString();
+        if (!levelController.gameOver)
+        {
+            tmpText.text = levelController.earthHealth.ToString();
+        }
+        
     }
 }

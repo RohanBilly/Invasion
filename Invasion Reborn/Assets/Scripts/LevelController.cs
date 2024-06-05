@@ -12,6 +12,7 @@ public class LevelController : MonoBehaviour
     private TextMeshProUGUI gameplayText;
     private Menus menu;
     private Player player;
+    private Rotate cameraRotation;
     
     public bool inMenu;
     public bool gameOver;
@@ -33,6 +34,7 @@ public class LevelController : MonoBehaviour
         gameplayText = GameObject.Find("GameplayText").GetComponent<TextMeshProUGUI>();
         menu = GameObject.Find("MenuButtonsCanvas").GetComponent<Menus>();
         player = GameObject.Find("Player").GetComponent<Player>();
+        cameraRotation = Camera.main.GetComponent<Rotate>();
         inMenu = true;
         levelStarted = false;
         levelNumber = 0;
@@ -105,6 +107,8 @@ public class LevelController : MonoBehaviour
                 levelStarted = false;
                 gameOver = true;
                 gameplayText.text = "GAME OVER";
+                cameraRotation.rotationSpeed = 0;
+                cameraRotation.moveDirection = Vector3.zero;
             }
         }
     }

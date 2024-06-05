@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class Rotate : MonoBehaviour
 {
-    private Vector2 moveDirection;
+    public Vector2 moveDirection;
     public Vector3 rotationPoint = Vector3.zero; // Point around which the camera will rotate
 
     public float rotationSpeed;
@@ -50,8 +50,11 @@ public class Rotate : MonoBehaviour
             StandardMovement();
         }
         
-
-        RotateAroundPoint(rotationSpeed * Time.deltaTime);
+        if (!levelController.gameOver)
+        {
+            RotateAroundPoint(rotationSpeed * Time.deltaTime);
+        }
+        
            
 
     }
